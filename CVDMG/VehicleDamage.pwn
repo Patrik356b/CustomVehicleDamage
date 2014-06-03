@@ -61,6 +61,7 @@ timer RespawnTrain[VEHICLE_RESPAWN_TIME](vehicleid)
 
 ptask VehicleDamageCheck[300](playerid)
 {
+	#if defined HALF_VEHICLE_COLLISION_DAMAGE
 	new vv = GetPlayerVehicleID(playerid);
 	if((vv) && (GetPlayerState(playerid) == PLAYER_STATE_DRIVER))
 	{
@@ -72,6 +73,7 @@ ptask VehicleDamageCheck[300](playerid)
 		VehicleData[vv][VehicleHealth] = tmpvhp;
 		return 1; // Update vehicle health
 	}
+	#endif
 
 	new keys, weaponid=GetPlayerWeapon(playerid);
 	GetPlayerKeys(playerid, keys, weaponid, weaponid);
@@ -110,7 +112,7 @@ ptask VehicleDamageCheck[300](playerid)
     return 1;
 }
 
-OnBulletHitVehicle(weaponid, hittype, hitid)
+OnBulletHitVehicle(weaponid, hitid)
 {
 	new hitmodel=(GetVehicleModel(hitid));
 	new Float:vhp=VehicleData[hitid][VehicleHealth];
