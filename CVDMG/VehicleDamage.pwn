@@ -15,7 +15,7 @@
 new Float:CVDMG_DATA_ARRAY[MAX_VEHICLES]; // this is where we store the vehicle health
 
 #define VEHICLE_DAMAGE_VERSION	1
-#define VEHICLE_DAMAGE_RCVER	2
+#define VEHICLE_DAMAGE_RCVER	3
 
 // Use this to directly invoke the custom damage system
 CreateVehicleEx(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay)
