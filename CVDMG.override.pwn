@@ -14,8 +14,10 @@ enum eTrain
 	col1, col2
 };
 
-new Float:CVDMG_Health[MAX_VEHICLES];
 new vTrain[MAX_VEHICLES][eTrain];
+
+// Rename the array to hold vehicle health
+#define CVDMG_DATA_ARRAY CVDMG_Health
 
 #define TRAIN_COLOR_1 vTrain[vehicleid][col1]
 #define TRAIN_COLOR_2 vTrain[vehicleid][col2]

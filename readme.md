@@ -16,6 +16,8 @@ Installation
     Now you need to make sure you include the files correctly in your filterscript or gamemode
     (It's recommended to be included in the gamemode, not a filterscript)
     
+    You may either take advantage of CVDMG.basic.pwn or follow the following guide to properly implement CVDMG:
+
     If you do not already have IsPointInPolygon by Ryder`
     #include <CVDMG\aera>
    
@@ -45,7 +47,8 @@ Installation
 
 Notes
 =====================
-    IF you would like to change the toughness of a vehicle, go edit VehicleDamage.inc line 64-359
+    If you would like to change the toughness of a vehicle, go edit VehicleDamage.inc line 64-359
+    Or you could take a look at how CVDMG.override.pwn is overriding the default values, it has every vehicle indexed like the vehicle list on wiki.sa-mp.com
 
     Train colors does not have to be static, they can use functions
     Example:
@@ -69,11 +72,12 @@ Notes
 	Versons & ChangeLog
 	===================
 
-	Current Version: v. 1.2
-    Initial Release
+	Current Version: v. 1.3
+    Bugfixes & API improvement
 
 ----
 
 	Older versions:
  
-	Not available
+	Version v. 1.2
+    Initial Release
