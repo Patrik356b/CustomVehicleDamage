@@ -8,6 +8,10 @@
 
 #include <YSI\y_hooks>
 
+#if !defined VEHICLE_RESPAWN_TIME
+	#define VEHICLE_RESPAWN_TIME 40*(60*1000) // 40 Minutes for trains to respawn
+#endif
+
 #define VEHICLE_DAMAGE_VERSION	1
 #define VEHICLE_DAMAGE_RCVER	2
 
@@ -15,13 +19,13 @@
 CreateVehicleEx(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay)
 {
 	new vehicleid=CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay);
-	VehicleData[vehicleid][VehicleHealth]=1000.01;
+	CVDMG_Health[vehicleid]=1000.01;
 	return vehicleid;
 }
 
 hook OnVehicleSpawn(vehicleid)
 {
-	VehicleData[vehicleid][VehicleHealth]=1000.01;
+	CVDMG_Health[vehicleid]=1000.01;
 	return 1;
 }
 
@@ -32,9 +36,8 @@ timer CreateTrainExplosion[800](vehicleid, type, radius, distance)
 	{
 		if(GetPlayerVehicleID(i) == vehicleid) SetPlayerHealth(i, -1.1);
 	}
-
 	
-	VehicleData[vehicleid][VehicleHealth]=-1.01;
+	CVDMG_Health[vehicleid]=-1.01;
 
 	// calculate angular offset (inaccurate)
 	new Float:Tx, Float: Ty, Float:Tz, Float:Ta;
@@ -93,7 +96,7 @@ ptask VehicleDamageCheck[300](playerid)
 	    		new v=FindVehicleNearPlayer(playerid);
 	    		if(v)
 	    		{
-			    	new Float:vhp=VehicleData[v][VehicleHealth];
+			    	new Float:vhp=CVDMG_Health[v];
 			    	switch(weaponid)
 			    	{
 			    		// VEHICLE_DAMAGE_MELEE
@@ -103,7 +106,7 @@ ptask VehicleDamageCheck[300](playerid)
 			    			vhp=floatsub(vhp, VehicleDamage[vm2][VEHICLE_DAMAGE_MELEE]);
 			    		}
 			    	}
-			    	VehicleData[v][VehicleHealth]=vhp;
+			    	CVDMG_Health[v]=vhp;
 			    	SetVehicleHealth(v, vhp);
 			    }
     		}
@@ -115,7 +118,7 @@ ptask VehicleDamageCheck[300](playerid)
 OnBulletHitVehicle(weaponid, hitid)
 {
 	new hitmodel=(GetVehicleModel(hitid));
-	new Float:vhp=VehicleData[hitid][VehicleHealth];
+	new Float:vhp=CVDMG_Health[hitid];
 	
 	switch(weaponid)
 	{
@@ -145,7 +148,7 @@ OnBulletHitVehicle(weaponid, hitid)
 			vhp=floatsub(vhp, VehicleDamage[hitid][VEHICLE_DAMAGE_RIFLE]);
 		}
 	}
-	VehicleData[hitid][VehicleHealth]=vhp;
+	CVDMG_Health[hitid]=vhp;
 
 	// Trains
 	if(vhp <= 0) return 0; // Prevent train to be exploded again before respawn

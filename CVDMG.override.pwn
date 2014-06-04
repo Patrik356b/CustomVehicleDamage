@@ -1,9 +1,11 @@
 #include <a_samp>
 #include <YSI\y_hooks>
+#include <YSI\y_timers>
 
 public OnGameModeInit()
 {
 	CVDMG_override();
+	CreateVehicleEx(600, 0, -20, 3, 75, 255, 222, -1); // Create a sample vehicle
 	return 1;
 }
 
@@ -12,10 +14,12 @@ enum eTrain
 	col1, col2
 };
 
+new Float:CVDMG_Health[MAX_VEHICLES];
 new vTrain[MAX_VEHICLES][eTrain];
 
 #define TRAIN_COLOR_1 vTrain[vehicleid][col1]
 #define TRAIN_COLOR_2 vTrain[vehicleid][col2]
+#include "CVDMG\area"
 #include "CVDMG\GetVehicleSize"
 #include "CVDMG\FindVehicleNearPlayer"
 #include "CVDMG\VehicleDamage.inc"
@@ -301,12 +305,12 @@ CVDMG_override() // To be used once only, like under OnGameModeInit
 }
 
 // 	Damage Multiplier - Per bullet/hit
-// MELEE, PISTOL, SMG, SHOTGUN, ASSAULT, RIFLE
+// VEHICLE_DAMAGE_MELEE, VEHICLE_DAMAGE_PISTOL, VEHICLE_DAMAGE_SMG, VEHICLE_DAMAGE_SHOTGUN, VEHICLE_DAMAGE_ASSAULT, VEHICLE_DAMAGE_RIFLE
 
 	/*
 	Weapon Catergories:
 
-	VEHICLE_DAMAGE_MELEE
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_MELEE
 	// WEAPON_FIST
 	// WEAPON_BRASSKNUCKLE
 	// WEAPON_GOLFCLUB
@@ -324,202 +328,202 @@ CVDMG_override() // To be used once only, like under OnGameModeInit
 	// WEAPON_FLOWER
 	// WEAPON_CANE
 	
-	VEHICLE_DAMAGE_PISTOL
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_PISTOL
 	// WEAPON_COLT45
 	// WEAPON_SILENCED 
 	// WEAPON_DEAGLE
 
-	VEHICLE_DAMAGE_SMG
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_SMG
 	// WEAPON_UZI
 	// WEAPON_MP5
 	// WEAPON_TEC9
 
-	VEHICLE_DAMAGE_SHOTGUN
-	// WEAPON_SHOTGUN
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_SHOTGUN
+	// WEAPON_VEHICLE_DAMAGE_SHOTGUN
 	// WEAPON_SAWEDOFF
 	// WEAPON_SHOTGSPA
 
-	VEHICLE_DAMAGE_ASSAULT
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_ASSAULT
 	// WEAPON_AK47
 	// WEAPON_M4
 
-	VEHICLE_DAMAGE_RIFLE
-	// WEAPON_RIFLE
+	VEHICLE_DAMAGE_VEHICLE_DAMAGE_RIFLE
+	// WEAPON_VEHICLE_DAMAGE_RIFLE
 	// WEAPON_SNIPER
 	*/
 
 CVDMG_Airplanes(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 3   ;
-	VehicleDamage[vehicleid][PISTOL]  = 8   ;
-	VehicleDamage[vehicleid][SMG]     = 13  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 19  ;
-	VehicleDamage[vehicleid][ASSAULT] = 17  ;
-	VehicleDamage[vehicleid][RIFLE]   = 25  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3   ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 8   ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 19  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 17  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 25  ;
 	return 1;
 }
 
 CVDMG_Helicopters(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 8   ;
-	VehicleDamage[vehicleid][PISTOL]  = 13  ;
-	VehicleDamage[vehicleid][SMG]     = 15  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 21  ;
-	VehicleDamage[vehicleid][ASSAULT] = 23  ;
-	VehicleDamage[vehicleid][RIFLE]   = 20  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 8   ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 15  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 21  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 23  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 20  ;
 	return 1;
 }
 
 CVDMG_Bikes(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 13  ;
-	VehicleDamage[vehicleid][PISTOL]  = 19  ;
-	VehicleDamage[vehicleid][SMG]     = 25  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 36  ;
-	VehicleDamage[vehicleid][ASSAULT] = 32  ;
-	VehicleDamage[vehicleid][RIFLE]   = 40  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 19  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 25  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 36  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 32  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 40  ;
 	return 1;
 }
 
 CVDMG_Convertibles(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 13  ;
-	VehicleDamage[vehicleid][PISTOL]  = 43  ;
-	VehicleDamage[vehicleid][SMG]     = 45  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 66  ;
-	VehicleDamage[vehicleid][ASSAULT] = 52  ;
-	VehicleDamage[vehicleid][RIFLE]   = 80  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 43  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 45  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 66  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 52  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 80  ;
 	return 1;
 }
 
 CVDMG_Industrial(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 3  ;
-	VehicleDamage[vehicleid][PISTOL]  = 9  ;
-	VehicleDamage[vehicleid][SMG]     = 15  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 26  ;
-	VehicleDamage[vehicleid][ASSAULT] = 35  ;
-	VehicleDamage[vehicleid][RIFLE]   = 60  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 9  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 15  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 26  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 35  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 60  ;
 	return 1;
 }
 
 CVDMG_Lowriders(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 33  ;
-	VehicleDamage[vehicleid][PISTOL]  = 21  ;
-	VehicleDamage[vehicleid][SMG]     = 24  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 46  ;
-	VehicleDamage[vehicleid][ASSAULT] = 39  ;
-	VehicleDamage[vehicleid][RIFLE]   = 100 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 33  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 21  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 24  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 46  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 39  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 100 ;
 	return 1;
 }
 
 CVDMG_OffRoad(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 13  ;
-	VehicleDamage[vehicleid][PISTOL]  = 31  ;
-	VehicleDamage[vehicleid][SMG]     = 39  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 46  ;
-	VehicleDamage[vehicleid][ASSAULT] = 59  ;
-	VehicleDamage[vehicleid][RIFLE]   = 47  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 31  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 39  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 46  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 59  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 47  ;
 	return 1;
 }
 
 CVDMG_PublicService(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 3   ;
-	VehicleDamage[vehicleid][PISTOL]  = 11  ;
-	VehicleDamage[vehicleid][SMG]     = 31  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 46  ;
-	VehicleDamage[vehicleid][ASSAULT] = 49  ;
-	VehicleDamage[vehicleid][RIFLE]   = 27  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3   ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 11  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 31  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 46  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 49  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 27  ;
 	return 1;
 }
 
 CVDMG_Saloons(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 33  ;
-	VehicleDamage[vehicleid][PISTOL]  = 40  ;
-	VehicleDamage[vehicleid][SMG]     = 61  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 76  ;
-	VehicleDamage[vehicleid][ASSAULT] = 89  ;
-	VehicleDamage[vehicleid][RIFLE]   = 107 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 33  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 40  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 61  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 76  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 89  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 107 ;
 	return 1;
 }
 
 CVDMG_Sports(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 53  ;
-	VehicleDamage[vehicleid][PISTOL]  = 30  ;
-	VehicleDamage[vehicleid][SMG]     = 41  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 56  ;
-	VehicleDamage[vehicleid][ASSAULT] = 69  ;
-	VehicleDamage[vehicleid][RIFLE]   = 77  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 53  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 30  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 41  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 56  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 77  ;
 	return 1;
 }
 
 CVDMG_StationWagons(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 69  ;
-	VehicleDamage[vehicleid][PISTOL]  = 50  ;
-	VehicleDamage[vehicleid][SMG]     = 69  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 69  ;
-	VehicleDamage[vehicleid][ASSAULT] = 89  ;
-	VehicleDamage[vehicleid][RIFLE]   = 88  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 50  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 89  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 88  ;
 	return 1;
 }
 
 CVDMG_Boats(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 99  ;
-	VehicleDamage[vehicleid][PISTOL]  = 52  ;
-	VehicleDamage[vehicleid][SMG]     = 59  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 69  ;
-	VehicleDamage[vehicleid][ASSAULT] = 79  ;
-	VehicleDamage[vehicleid][RIFLE]   = 99  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 99  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 52  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 59  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 79  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 99  ;
 	return 1;
 }
 
 CVDMG_Unique(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 31  ;
-	VehicleDamage[vehicleid][PISTOL]  = 42  ;
-	VehicleDamage[vehicleid][SMG]     = 49  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 53  ;
-	VehicleDamage[vehicleid][ASSAULT] = 69  ;
-	VehicleDamage[vehicleid][RIFLE]   = 111 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 31  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 42  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 49  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 53  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 69  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 111 ;
 	return 1;
 }
 
 CVDMG_RC(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 99  ;
-	VehicleDamage[vehicleid][PISTOL]  = 72  ;
-	VehicleDamage[vehicleid][SMG]     = 89  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 129 ;
-	VehicleDamage[vehicleid][ASSAULT] = 111 ;
-	VehicleDamage[vehicleid][RIFLE]   = 180 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 99  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 72  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 89  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 129 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 111 ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 180 ;
 	return 1;
 }
 
 CVDMG_Trailers(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 13  ;
-	VehicleDamage[vehicleid][PISTOL]  = 18  ;
-	VehicleDamage[vehicleid][SMG]     = 22  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 36  ;
-	VehicleDamage[vehicleid][ASSAULT] = 41  ;
-	VehicleDamage[vehicleid][RIFLE]   = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 18  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 22  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 36  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 41  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 13  ;
 	return 1;
 }
 
 CVDMG_Train(vehicleid)
 {
-	VehicleDamage[vehicleid][MELEE]   = 0   ; // Melee's don't work with trains
-	VehicleDamage[vehicleid][PISTOL]  = 8   ;
-	VehicleDamage[vehicleid][SMG]     = 12  ;
-	VehicleDamage[vehicleid][SHOTGUN] = 17  ;
-	VehicleDamage[vehicleid][ASSAULT] = 24  ;
-	VehicleDamage[vehicleid][RIFLE]   = 33  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 0   ; // VEHICLE_DAMAGE_MELEE's don't work with trains
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 8   ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 12  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 17  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_ASSAULT] = 24  ;
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_RIFLE]   = 33  ;
 	return 1;
 }
