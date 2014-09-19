@@ -354,7 +354,7 @@ CVDMG_override() // To be used once only, like under OnGameModeInit
 	// WEAPON_SNIPER
 	*/
 
-CVDMG_Airplanes(vehicleid)
+CVDMG_Airplanes(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3   ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 8   ;
@@ -365,7 +365,7 @@ CVDMG_Airplanes(vehicleid)
 	return 1;
 }
 
-CVDMG_Helicopters(vehicleid)
+CVDMG_Helicopters(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 8   ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 13  ;
@@ -376,7 +376,7 @@ CVDMG_Helicopters(vehicleid)
 	return 1;
 }
 
-CVDMG_Bikes(vehicleid)
+CVDMG_Bikes(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 19  ;
@@ -387,7 +387,7 @@ CVDMG_Bikes(vehicleid)
 	return 1;
 }
 
-CVDMG_Convertibles(vehicleid)
+CVDMG_Convertibles(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 43  ;
@@ -398,7 +398,7 @@ CVDMG_Convertibles(vehicleid)
 	return 1;
 }
 
-CVDMG_Industrial(vehicleid)
+CVDMG_Industrial(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 9  ;
@@ -409,7 +409,7 @@ CVDMG_Industrial(vehicleid)
 	return 1;
 }
 
-CVDMG_Lowriders(vehicleid)
+CVDMG_Lowriders(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 33  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 21  ;
@@ -420,7 +420,7 @@ CVDMG_Lowriders(vehicleid)
 	return 1;
 }
 
-CVDMG_OffRoad(vehicleid)
+CVDMG_OffRoad(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 31  ;
@@ -431,7 +431,7 @@ CVDMG_OffRoad(vehicleid)
 	return 1;
 }
 
-CVDMG_PublicService(vehicleid)
+CVDMG_PublicService(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3   ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 11  ;
@@ -442,7 +442,7 @@ CVDMG_PublicService(vehicleid)
 	return 1;
 }
 
-CVDMG_Saloons(vehicleid)
+CVDMG_Saloons(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 33  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 40  ;
@@ -453,7 +453,7 @@ CVDMG_Saloons(vehicleid)
 	return 1;
 }
 
-CVDMG_Sports(vehicleid)
+CVDMG_Sports(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 53  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 30  ;
@@ -464,7 +464,7 @@ CVDMG_Sports(vehicleid)
 	return 1;
 }
 
-CVDMG_StationWagons(vehicleid)
+CVDMG_StationWagons(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 69  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 50  ;
@@ -475,7 +475,7 @@ CVDMG_StationWagons(vehicleid)
 	return 1;
 }
 
-CVDMG_Boats(vehicleid)
+CVDMG_Boats(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 99  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 52  ;
@@ -486,7 +486,7 @@ CVDMG_Boats(vehicleid)
 	return 1;
 }
 
-CVDMG_Unique(vehicleid)
+CVDMG_Unique(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 31  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 42  ;
@@ -497,7 +497,7 @@ CVDMG_Unique(vehicleid)
 	return 1;
 }
 
-CVDMG_RC(vehicleid)
+CVDMG_RC(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 99  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 72  ;
@@ -508,7 +508,7 @@ CVDMG_RC(vehicleid)
 	return 1;
 }
 
-CVDMG_Trailers(vehicleid)
+CVDMG_Trailers(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 13  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 18  ;
@@ -519,7 +519,7 @@ CVDMG_Trailers(vehicleid)
 	return 1;
 }
 
-CVDMG_Train(vehicleid)
+CVDMG_Train(modelid)
 {
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 0   ; // VEHICLE_DAMAGE_MELEE's don't work with trains
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 8   ;
