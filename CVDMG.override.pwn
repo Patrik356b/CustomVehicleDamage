@@ -521,7 +521,7 @@ CVDMG_Trailers(modelid)
 
 CVDMG_Train(modelid)
 {
-	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 0   ; // VEHICLE_DAMAGE_MELEE's don't work with trains
+	VehicleDamage[vehicleid][VEHICLE_DAMAGE_MELEE]   = 3   ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_PISTOL]  = 8   ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SMG]     = 12  ;
 	VehicleDamage[vehicleid][VEHICLE_DAMAGE_SHOTGUN] = 17  ;
