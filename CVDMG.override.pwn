@@ -30,10 +30,10 @@ new vTrain[MAX_VEHICLES][eTrain];
 public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY, Float:fZ)
 {
 	if(hittype == BULLET_HIT_TYPE_VEHICLE)
-    {
-    	OnBulletHitVehicle(weaponid, hitid);
-    	return 0; // Have to return 0 or custom damage will not be applied
-    }
+	{
+		OnBulletHitVehicle(weaponid, hitid);
+		return 0; // Have to return 0 or custom damage will not be applied
+	}
 	return 1;    
 }
 
