@@ -57,8 +57,8 @@ enum VehicleDamageType
 //=============================================================================================//
 
 // 	Damage Multiplier - Per bullet/hit
-// Example: {444, 666, 222, 1414, 4040, 1000} // [533] Feltzer
-// MELEE, PISTOL, SMG, SHOTGUN, ASSAULT, RIFLE
+// Example: {   44,     66,  22,      36,      40, 100} // [533] Feltzer
+//           MELEE, PISTOL, SMG, SHOTGUN, ASSAULT, RIFLE
 
 new VehicleDamage[][VehicleDamageType] = {
 	{40,  60, 50, 44,  40,  90}, // [400] Landstalker
