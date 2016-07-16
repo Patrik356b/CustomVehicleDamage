@@ -83,4 +83,4 @@ Notes
     Initial Release
 
 	Version v. 1.1 and older
-    Never released because proof-of-concept code needed optimizations and cleann ups
+    Never released because proof-of-concept code needed optimizations and clean ups
