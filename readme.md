@@ -69,16 +69,26 @@ Notes
 
 ----
 
+	Optional Feature
+	===================
+	
+	See the TXT file inside CVDMG-overview.zip for how to easily generate a table of the current settings inside VehicleDamage.inc (PHP webhost required. You can set up a local webhost with php to run this if you want to)
+
+----
+
 	Versons & ChangeLog
 	===================
 
-	Current Version: v. 1.3
-    Bugfixes & API improvement
+	Current Version: v. 1.3.1
+    Restore old feature that was never published (See Optional section)
 
 ----
 
 	Older versions:
- 
+
+	Current Version: v. 1.3
+    Bugfixes & API improvement
+
 	Version v. 1.2
     Initial Release
 
