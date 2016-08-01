@@ -72,8 +72,8 @@ Notes
 	Optional Feature
 	===================
 	
-	See the TXT file inside CVDMG-overview.zip for how to easily generate a table of the current settings inside	VehicleDamage.inc (PHP webhost required.
-	You can set up a local webhost with php to run this if you want to)
+	See the TXT file inside CVDMG-overview.zip for how to easily generate a table of the current settings inside VehicleDamage.inc
+	(PHP webhost required. You can set up a local webhost with php to run this if you want to)
 
 ----
 
