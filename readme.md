@@ -6,7 +6,7 @@ Finally we can customize the tollerance of different weapons to different vehicl
     The license in CVDMG states that CVDMG is free and provided as-is without any warranty.
 	Please see the detailed license which can be found inside LICENSE.md
 
-		Forum Topic: http://forum.sa-mp.com/showthread.php?t=614316
+Forum Topic: http://forum.sa-mp.com/showthread.php?t=614316
 ----
 
 Installation
